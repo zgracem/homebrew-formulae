@@ -12,6 +12,9 @@ class Brightness < Formula
   depends_on :macos
 
   def install
+    if MacOS.version >= :mojave && MacOS::CLT.installed?
+      ENV["SDKROOT"] = ENV["HOMEBREW_SDKROOT"] = MacOS::CLT.sdk_path(MacOS.version)
+    end
     system "make"
     system "make", "prefix=#{prefix}", "install"
   end
