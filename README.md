@@ -15,11 +15,3 @@ upgrade from version 3. The official `homebrew-cask-versions` tap has a cask for
 
 `unrar` was [removed](https://github.com/Homebrew/homebrew-core/pull/66609) from
 Homebrew in December 2020 because it's not open source software.
-
-## `brightness`
-
-`brightness` has not had a [release] since 2015. The `HEAD` version builds on
-modern macOS, but Homebrew is unlikely to accept such a revision to what they
-would likely see as an unmaintained formula.
-
-[release]: https://github.com/nriley/brightness/releases/tag/1.2
