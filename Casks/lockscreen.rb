@@ -16,5 +16,4 @@ cask "lockscreen" do
   end
 
   app "Lock Screen.app"
-  binary "#{appdir}/Lock Screen.app/Contents/MacOS/applet"
 end
