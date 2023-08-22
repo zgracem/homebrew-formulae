@@ -61,7 +61,7 @@ class Calendar < Formula
 
     # From debian/calendar.install
     inreplace "debian/calendars/default" do |s|
-      s.gsub! "/usr/share/calendar", pkgshare
+      s.gsub! "/usr/share/calendar", opt_pkgshare
       s.gsub! "/etc/calendar", pkgetc
     end
 
