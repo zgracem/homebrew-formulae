@@ -57,6 +57,10 @@ class Calendar < Formula
       s.gsub! "bsd/stdlib.h", "stdlib.h"
     end
 
+    inreplace "usr.bin/calendar/pathnames.h" do |s|
+      s.gsub! %r{(?<=^#define\t_PATH_CPP\t)"/usr/(bin/cpp|libexec/tradcpp)"}, '"/usr/local/bin/tradcpp"'
+    end
+
     ENV.prepend "LDFLAGS", "-liconv" if OS.mac?
     system "make", "DESTDIR=#{prefix}", "install"
 
@@ -119,16 +123,3 @@ index 2697dee..6775b98 100644
  #include <wchar.h>
 
  extern struct passwd *pw;
-diff --git a/usr.bin/calendar/pathnames.h b/usr.bin/calendar/pathnames.h
-index 534b7f9..31ccad7 100644
---- a/usr.bin/calendar/pathnames.h
-+++ b/usr.bin/calendar/pathnames.h
-@@ -33,7 +33,7 @@
-
- #include <paths.h>
-
--#define        _PATH_CPP       "/usr/bin/cpp"
-+#define        _PATH_CPP       "/usr/local/bin/tradcpp"
-
-                        /* XXX -- fix when cpp parses arguments rationally */
- #define        _PATH_INCLUDE   "-I/usr/share/calendar"
