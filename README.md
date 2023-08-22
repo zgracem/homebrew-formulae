@@ -2,6 +2,18 @@
 
 Resurrecting dead and obsolete Homebrew formulae for my own use.
 
+## `calendar`
+
+An up-to-date version of the BSD [`calendar(1)`][cal] which ships with macOS.
+
+[cal]: https://packages.debian.org/stable/calendar
+
+## `lockscreen`
+
+Builds [a simple .app][lock] to quickly lock the screen in macOS.
+
+[lock]: https://github.com/gaomd/lock-screen-app
+
 ## `sublime-text3`
 
 `sublime-text` was [updated][st4] to version 4 in May 2021, which is a paid
