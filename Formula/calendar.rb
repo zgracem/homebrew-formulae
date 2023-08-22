@@ -34,7 +34,7 @@ class Calendar < Formula
     patch :DATA
   end
 
-  # Works fine(?) with llvm_clang
+  # Works with llvm_clang
   fails_with :clang do
     build 1403
     cause "Deprecated function calls"
@@ -58,7 +58,8 @@ class Calendar < Formula
     end
 
     inreplace "usr.bin/calendar/pathnames.h" do |s|
-      s.gsub! %r{(?<=^#define\t_PATH_CPP\t)"/usr/(bin/cpp|libexec/tradcpp)"}, '"/usr/local/bin/tradcpp"'
+      s.gsub! %r{(?<=^#define\t_PATH_CPP\t)"/usr/(bin/cpp|libexec/tradcpp)"},
+              %("#{HOMEBREW_PREFIX}/bin/tradcpp")
     end
 
     ENV.prepend "LDFLAGS", "-liconv" if OS.mac?
@@ -97,12 +98,12 @@ class Calendar < Formula
 
     # Default file: ~/.calendar/calendar
     cal_dir.mkpath
-    (cal_dir/"calendar").write <<~EOS
+    (cal_dir/"calendar").write <<~CAL
       #ifndef _calendar_test_
       #define _calendar_test_
       #{cal_text}
       #endif
-    EOS
+    CAL
     require "date"
     cal_date = Date.parse(cal_mmdd)
     assert_match cal_text.sub(cal_mmdd, cal_date.strftime("%b %d")),
