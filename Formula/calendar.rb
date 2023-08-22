@@ -38,8 +38,6 @@ class Calendar < Formula
     cause "Deprecated function calls"
   end
 
-  cal_dir = "usr.bin/calendar"
-
   def install
     inreplace "config.mk" do |s|
       s.change_make_var! "datadir", share
@@ -48,11 +46,11 @@ class Calendar < Formula
 
     inreplace "Makefile" do |s|
       # don't build ncal
-      s.change_make_var! "BIN", cal_dir
+      s.change_make_var! "BIN", "usr.bin/calendar"
       s.gsub! "$(DESTDIR)/usr", "$(DESTDIR)"
     end
 
-    inreplace "#{cal_dir}/Makefile" do |s|
+    inreplace "usr.bin/calendar/Makefile" do |s|
       s.remove_make_var! "LIBS"
       s.gsub! "bsd/stdlib.h", "stdlib.h"
     end
