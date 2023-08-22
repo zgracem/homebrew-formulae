@@ -4,7 +4,7 @@ class Calendar < Formula
   url "https://deb.debian.org/debian/pool/main/b/bsdmainutils/bsdmainutils_12.1.8.tar.xz"
   sha256 "9e3e693b2f8ca4f3f10f0d154dac092e6251f12dc782a069a22a48c92d11bcbf"
   license "BSD-2-Clause"
-  revision 5
+  revision 6
 
   head do
     url "https://salsa.debian.org/meskes/bsdmainutils.git", branch: "master"
@@ -13,6 +13,7 @@ class Calendar < Formula
   keg_only :provided_by_macos
 
   depends_on "llvm" => :build
+  depends_on "tradcpp"
   uses_from_macos "libiconv" => :build
 
   patch do
@@ -33,7 +34,7 @@ class Calendar < Formula
     patch :DATA
   end
 
-  # Works fine with llvm_clang
+  # Works fine(?) with llvm_clang
   fails_with :clang do
     build 1403
     cause "Deprecated function calls"
@@ -118,3 +119,16 @@ index 2697dee..6775b98 100644
  #include <wchar.h>
 
  extern struct passwd *pw;
+diff --git a/usr.bin/calendar/pathnames.h b/usr.bin/calendar/pathnames.h
+index 534b7f9..31ccad7 100644
+--- a/usr.bin/calendar/pathnames.h
++++ b/usr.bin/calendar/pathnames.h
+@@ -33,7 +33,7 @@
+
+ #include <paths.h>
+
+-#define        _PATH_CPP       "/usr/bin/cpp"
++#define        _PATH_CPP       "/usr/local/bin/tradcpp"
+
+                        /* XXX -- fix when cpp parses arguments rationally */
+ #define        _PATH_INCLUDE   "-I/usr/share/calendar"
