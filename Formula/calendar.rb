@@ -4,7 +4,7 @@ class Calendar < Formula
   url "https://deb.debian.org/debian/pool/main/b/bsdmainutils/bsdmainutils_12.1.8.tar.xz"
   sha256 "9e3e693b2f8ca4f3f10f0d154dac092e6251f12dc782a069a22a48c92d11bcbf"
   license "BSD-2-Clause"
-  revision 2
+  revision 3
 
   head do
     url "https://salsa.debian.org/meskes/bsdmainutils.git", branch: "master"
@@ -12,8 +12,8 @@ class Calendar < Formula
 
   keg_only :provided_by_macos
 
-  depends_on "gcc"
-  uses_from_macos "libiconv"
+  depends_on "gcc" => :build
+  uses_from_macos "libiconv" => :build
 
   patch do
     url "https://deb.debian.org/debian/pool/main/b/bsdmainutils/bsdmainutils_12.1.8.tar.xz"
@@ -58,8 +58,16 @@ class Calendar < Formula
 
     ENV.prepend "LDFLAGS", "-liconv" if OS.mac?
     system "make", "DESTDIR=#{prefix}", "install"
+  end
 
-    pkgshare.mkpath
+  def post_install
+    # From debian/calendar.install
+    inreplace "debian/calendars/default" do |s|
+      s.gsub! "/usr/share/calendar", pkgshare
+      s.gsub! "/etc/calendar", pkgetc
+    end
+
+    pkgetc.install "debian/calendars/default"
     pkgshare.install Dir["usr.bin/calendar/calendars/calendar.*"]
     %w[
       de_DE.ISO8859-1
@@ -75,6 +83,8 @@ class Calendar < Formula
       (pkgshare/lang).install Dir["usr.bin/calendar/calendars/#{c}/*"]
     end
     pkgshare.install Dir["debian/calendars/calendar.*"]
+    doc.install "debian/calendarJudaic.py"
+    doc.install "usr.bin/calendar/source.data"
   end
 
   test do
