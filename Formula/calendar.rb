@@ -4,6 +4,7 @@ class Calendar < Formula
   url "https://deb.debian.org/debian/pool/main/b/bsdmainutils/bsdmainutils_12.1.8.tar.xz"
   sha256 "9e3e693b2f8ca4f3f10f0d154dac092e6251f12dc782a069a22a48c92d11bcbf"
   license "BSD-2-Clause"
+  revision 1
 
   head do
     url "https://salsa.debian.org/meskes/bsdmainutils.git", branch: "master"
@@ -57,9 +58,7 @@ class Calendar < Formula
 
     ENV.prepend "LDFLAGS", "-liconv" if OS.mac?
     system "make", "DESTDIR=#{prefix}", "install"
-  end
 
-  def post_install
     pkgshare.mkpath
     pkgshare.install Dir["usr.bin/calendar/calendars/calendar.*"]
     pkgshare.install Dir["debian/calendars/calendar.*"]
