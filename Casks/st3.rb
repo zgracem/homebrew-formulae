@@ -1,4 +1,4 @@
-cask "sublime-text@3" do
+cask "st3" do
   version "3.211"
   sha256 "531c84e24983927c59dc0c5611f605776f917d1c516af80c69c09ea232d24e01"
 
