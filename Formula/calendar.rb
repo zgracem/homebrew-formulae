@@ -1,3 +1,6 @@
+# rubocop:disable Lint/MissingCopEnableDirective, Layout/SpaceAroundOperators
+# rubocop:disable Style/Documentation, Style/StringHashKeys
+# rubocop:disable Metrics/AbcSize, Metrics/MethodLength
 class Calendar < Formula
   desc "Displays upcoming relevant dates on a wide variety of calendars"
   homepage "https://packages.debian.org/stable/calendar"
