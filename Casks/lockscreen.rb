@@ -16,4 +16,11 @@ cask "lockscreen" do
   end
 
   app "Lock Screen.app"
+
+  caveats do
+    unsigned_accessibility
+    <<~CAVEAT
+      You may also need to add `#{app}/Contents/MacOS/applet`.
+    CAVEAT
+  end
 end
