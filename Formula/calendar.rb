@@ -1,3 +1,5 @@
+# vim:ft=ruby
+
 class Calendar < Formula
   desc "Displays upcoming relevant dates on a wide variety of calendars"
   homepage "https://packages.debian.org/stable/calendar"
