@@ -94,7 +94,7 @@ class Calendar < Formula
     doc.install "usr.bin/calendar/source.data"
   end
 
-  caveats do
+  def caveats
     <<~CAVEAT
       Calendar files have been installed to:
         #{pkgshare}
