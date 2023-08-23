@@ -20,7 +20,7 @@ cask "lockscreen" do
   caveats do
     unsigned_accessibility
     <<~CAVEAT
-      You may also need to add `#{app}/Contents/MacOS/applet`.
+      You may also need to add `Lock Screen.app/Contents/MacOS/applet`.
     CAVEAT
   end
 end
