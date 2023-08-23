@@ -18,9 +18,10 @@ cask "lockscreen" do
   app "Lock Screen.app"
 
   caveats do
-    unsigned_accessibility
     <<~CAVEAT
-      You may also need to add `Lock Screen.app/Contents/MacOS/applet`.
+      #{token} requires elevated permissions to work.
+      You must add both the .app bundle and its `Contents/MacOS/applet` to:
+        System Settings → Privacy & Security → Accessibility
     CAVEAT
   end
 end
