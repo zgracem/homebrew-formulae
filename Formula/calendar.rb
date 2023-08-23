@@ -94,6 +94,13 @@ class Calendar < Formula
     doc.install "usr.bin/calendar/source.data"
   end
 
+  caveats do
+    <<~CAVEAT
+      Calendar files have been installed to:
+        #{pkgshare}
+    CAVEAT
+  end
+
   test do
     cal_dir = (testpath/".calendar")
     cal_mmdd = "03/11"
