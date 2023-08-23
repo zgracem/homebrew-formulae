@@ -1,0 +1,17 @@
+---
+inherit_from: ../../.config/rubocop/config.yml
+
+Lint/MissingCopEnableDirective:
+  Enabled: false
+Layout/SpaceAroundOperators:
+  Enabled: false
+Style/StringHashKeys:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Naming/FileName:
+  Enabled: false

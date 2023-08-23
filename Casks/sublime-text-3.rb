@@ -17,13 +17,14 @@ cask "sublime-text-3" do
   app "Sublime Text.app"
   binary "#{appdir}/Sublime Text.app/Contents/SharedSupport/bin/subl"
 
-  uninstall quit: "com.sublimetext.#{version.major}"
+  bundle_id = "com.sublimetext.#{version.major}"
+  uninstall quit: "#{bundle_id}"
 
   zap trash: [
-    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/com.sublimetext.#{version.major}.sfl*",
+    "~/Library/Application Support/com.apple.sharedfilelist/com.apple.LSSharedFileList.ApplicationRecentDocuments/#{bundle_id}.sfl*",
     "~/Library/Application Support/Sublime Text #{version.major}",
-    "~/Library/Caches/com.sublimetext.#{version.major}",
-    "~/Library/Preferences/com.sublimetext.#{version.major}.plist",
-    "~/Library/Saved Application State/com.sublimetext.#{version.major}.savedState",
+    "~/Library/Caches/#{bundle_id}",
+    "~/Library/Preferences/#{bundle_id}.plist",
+    "~/Library/Saved Application State/#{bundle_id}.savedState",
   ]
 end
