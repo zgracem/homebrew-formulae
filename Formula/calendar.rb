@@ -18,7 +18,7 @@ class Calendar < Formula
   keg_only :provided_by_macos
 
   depends_on "llvm" => :build
-  depends_on "tradcpp"
+  depends_on "tradcpp" # https://lists.freebsd.org/pipermail/freebsd-current/2012-November/037751.html
   uses_from_macos "libiconv" => :build
 
   patch do
