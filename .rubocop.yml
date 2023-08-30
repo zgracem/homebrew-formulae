@@ -1,5 +1,5 @@
 ---
-inherit_from: ../../.config/rubocop/config.yml
+inherit_from: ../../../.config/rubocop/config.yml
 
 Lint/MissingCopEnableDirective:
   Enabled: false
