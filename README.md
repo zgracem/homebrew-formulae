@@ -6,13 +6,16 @@ Custom Homebrew formulae for my own use.
 
 ### `calendar`
 
-An up-to-date version of the BSD [`calendar(1)`][cal] which ships with macOS.
+An up-to-date version of the BSD [`calendar(1)`][cal] which ships with macOS,
+and corresponding [custom data files].
 
 ```sh
 brew install zgracem/formulae/calendar
+brew install zgracem/formulae/zgm-calendar-data
 ```
 
 [cal]: https://packages.debian.org/stable/calendar
+[custom data files]: https://github.com/zgracem/calendar-data
 
 ### `unrar`
 
