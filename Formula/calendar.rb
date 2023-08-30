@@ -32,6 +32,7 @@ class Calendar < Formula
           "debian/patches/calendars.diff"
   end
 
+  # `brew audit` disapproves, but this patch must be applied after the above
   on_macos do
     patch :DATA
   end
@@ -61,7 +62,7 @@ class Calendar < Formula
 
     inreplace "usr.bin/calendar/pathnames.h" do |s|
       s.gsub! %r{(?<=^#define\t_PATH_CPP\t)"/usr/(bin/cpp|libexec/tradcpp)"},
-              %("#{HOMEBREW_PREFIX}/bin/tradcpp")
+              %Q("#{HOMEBREW_PREFIX}/bin/tradcpp")
     end
 
     ENV.prepend "LDFLAGS", "-liconv" if OS.mac?
@@ -72,23 +73,24 @@ class Calendar < Formula
       s.gsub! "/usr/share/calendar", opt_pkgshare
       s.gsub! "/etc/calendar", pkgetc
     end
-
     pkgetc.install "debian/calendars/default"
+
     pkgshare.install Dir["usr.bin/calendar/calendars/calendar.*"]
     %w[
+      de_AT.ISO_8859-15
       de_DE.ISO8859-1
       fr_FR.ISO8859-1
       hr_HR.ISO8859-2
-      de_AT.ISO_8859-15
       hu_HU.ISO8859-2
-      uk_UA.KOI8-U
-      ru_RU.UTF-8
       pt_BR.UTF-8
+      ru_RU.UTF-8
+      uk_UA.KOI8-U
     ].each do |c|
       lang = c.split(".").first
       (pkgshare/lang).install Dir["usr.bin/calendar/calendars/#{c}/*"]
     end
     pkgshare.install Dir["debian/calendars/calendar.*"]
+
     doc.install "debian/calendarJudaic.py"
     doc.install "usr.bin/calendar/source.data"
   end
@@ -116,7 +118,7 @@ class Calendar < Formula
     require "date"
     cal_date = Date.parse(cal_mmdd)
     assert_match cal_text.sub(cal_mmdd, cal_date.strftime("%b %d")),
-                 shell_output("#{bin}/calendar -t #{cal_date.strftime('%m%d')}")
+                 shell_output("#{bin}/calendar -t #{cal_date.strftime("%m%d")}")
   end
 end
 
