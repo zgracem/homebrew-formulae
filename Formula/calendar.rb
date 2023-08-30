@@ -69,6 +69,8 @@ class Calendar < Formula
     system "make", "DESTDIR=#{prefix}", "install"
 
     # From debian/calendar.install
+    man1.install "calendar.1"
+
     inreplace "debian/calendars/default" do |s|
       s.gsub! "/usr/share/calendar", opt_pkgshare
       s.gsub! "/etc/calendar", pkgetc
