@@ -8,6 +8,11 @@ class Calendar < Formula
   license "BSD-2-Clause"
   revision 6
 
+  livecheck do
+    url :homepage
+    regex(/href="[^"' >]+?bsdmainutils_(\d+\.\d+\.\d+(?:\+(?:b|nmu)\d+)?)\.t/i)
+  end
+
   head do
     url "https://salsa.debian.org/meskes/bsdmainutils.git", branch: "master"
   end
