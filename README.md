@@ -17,6 +17,16 @@ brew install zgracem/formulae/zgm-calendar-data
 [cal]: https://packages.debian.org/stable/calendar
 [custom data files]: https://github.com/zgracem/calendar-data
 
+### `toilet`
+
+The core formula for this colourful version of `figlet` installs the fonts to
+the wrong directory. This formula ensures the font files from `toilet` and
+`figlet` both end up in `/usr/local/share/figlet/fonts`.
+
+```sh
+brew install zgracem/formulae/toilet
+```
+
 ### `unrar`
 
 `unrar` was [removed](https://github.com/Homebrew/homebrew-core/pull/66609) from
