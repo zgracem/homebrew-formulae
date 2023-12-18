@@ -28,6 +28,12 @@ brew install zgracem/formulae/unrar
 
 ## Casks
 
+### `acorn-latest7`
+
+Downloads (and livechecks) development builds of [Acorn].
+
+[Acorn]: https://flyingmeat.com/download/latest
+
 ### `lockscreen`
 
 Builds [a simple .app][lock] to quickly lock the screen in macOS.
