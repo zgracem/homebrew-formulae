@@ -1,5 +1,5 @@
 cask "acorn-latest7" do
-  version "7.4.4b1 (16378)"
+  version "7.4.4b1-16378"
   sha256 :no_check
 
   url "https://flyingmeat.com/download/latest/Acorn7Preview.zip"
