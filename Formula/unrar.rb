@@ -10,6 +10,10 @@ class Unrar < Formula
   end
 
   def install
+    if MacOS::CLT.installed?
+      ENV["SDKROOT"] = ENV["HOMEBREW_SDKROOT"] = MacOS::CLT.sdk_path(MacOS.version)
+    end
+
     # upstream doesn't particularly care about their unix targets,
     # so we do the dirty work of renaming their shared objects to
     # dylibs for them.
