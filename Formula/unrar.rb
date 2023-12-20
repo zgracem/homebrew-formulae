@@ -15,6 +15,8 @@ class Unrar < Formula
     # dylibs for them.
     inreplace "makefile", "libunrar.so", "libunrar.dylib"
 
+    ENV.append "CXXFLAGS", "-std=c++13"
+
     system "make"
     bin.install "unrar"
 
