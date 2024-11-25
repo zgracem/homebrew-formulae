@@ -1,5 +1,5 @@
 cask "acorn-latest7" do
-  version "7.4.6b1-16653"
+  version "7.4.6-16745"
   sha256 :no_check
 
   url "https://flyingmeat.com/download/latest/Acorn7Preview.zip"
@@ -10,7 +10,7 @@ cask "acorn-latest7" do
   livecheck do
     url "https://flyingmeat.com/download/latest/"
     strategy :page_match do |page|
-      page.scan(%r{(?<=Acorn 7 Preview\.zip</a> \()(\d+(?:\.\d+)*(?:[ab]\d+) \(\d+\))}i)
+      page.scan(%r{(?<=Acorn 7 Preview\.zip</a> \()(\d+(?:\.\d+)*(?:[ab]\d+)? \(\d+\))}i)
           .map { |match| match&.first }
     end
   end
