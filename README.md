@@ -17,6 +17,14 @@ brew install zgracem/formulae/zgm-calendar-data
 [cal]: https://packages.debian.org/stable/calendar
 [custom data files]: https://github.com/zgracem/calendar-data
 
+### `imagemagick`
+
+ImageMagick with `mozjpeg` included at build time.
+
+```sh
+brew install zgracem/formulae/imagemagick
+```
+
 ### `unrar`
 
 `unrar` was [removed](https://github.com/Homebrew/homebrew-core/pull/66609) from
