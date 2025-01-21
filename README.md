@@ -28,7 +28,7 @@ brew install zgracem/formulae/unrar
 
 ## Casks
 
-### `acorn-latest7`
+### `acorn@preview`
 
 Downloads (and livechecks) development builds of [Acorn].
 
