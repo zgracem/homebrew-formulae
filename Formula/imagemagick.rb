@@ -1,9 +1,9 @@
 class Imagemagick < Formula
   desc "Tools and libraries to manipulate images in many formats"
   homepage "https://imagemagick.org/index.php"
-  url "https://imagemagick.org/archive/releases/ImageMagick-7.1.1-43.tar.xz"
-  version "7.1.1-43-with-mozjpeg" # to distinguish from homebrew-core's imagemagick
-  sha256 "fa79401342b409b9b7f7d3146bd6595787373811e72be1669c39b58d1489da4f"
+  url "https://imagemagick.org/archive/releases/ImageMagick-7.1.1-47.tar.xz"
+  version "7.1.1-47-custom" # to distinguish from homebrew-core's imagemagick
+  sha256 "2396cd3c4237cfbc09a89d31d1cee157ee11fbc8ec1e540530e10175cb707160"
   license "ImageMagick"
   head "https://github.com/ImageMagick/ImageMagick.git", branch: "main"
 
@@ -23,6 +23,7 @@ class Imagemagick < Formula
   depends_on "mozjpeg"
   depends_on "openexr"
   depends_on "openjpeg"
+  depends_on "pango"
   depends_on "webp"
   depends_on "xz"
 
@@ -39,6 +40,7 @@ class Imagemagick < Formula
 
   on_linux do
     depends_on "libx11"
+    depends_on "libxext"
   end
 
   skip_clean :la
@@ -49,28 +51,30 @@ class Imagemagick < Formula
     # versioned stuff in main tree is pointless for us
     inreplace "configure", "${PACKAGE_NAME}-${PACKAGE_BASE_VERSION}", "${PACKAGE_NAME}"
 
-    args = [
-      "--enable-osx-universal-binary=no",
-      "--disable-silent-rules",
-      "--disable-opencl",
-      "--enable-shared",
-      "--enable-static",
-      "--with-freetype=yes",
-      "--with-gvc=no",
-      "--with-modules",
-      "--with-openjp2",
-      "--with-openexr",
-      "--with-webp=yes",
-      "--with-heic=yes",
-      "--with-raw=yes",
-      "--with-gslib",
-      "--with-gs-font-dir=#{HOMEBREW_PREFIX}/share/ghostscript/fonts",
-      "--with-lqr",
-      "--without-djvu",
-      "--without-fftw",
-      "--without-pango",
-      "--without-wmf",
-      "--enable-openmp"
+    args = %w[
+      --disable-osx-universal-binary
+      --prefix=#{prefix}
+      --disable-dependency-tracking
+      --disable-silent-rules
+      --disable-opencl
+      --enable-shared
+      --enable-static
+      --with-freetype=yes
+      --with-gvc=no
+      --with-modules
+      --with-openjp2
+      --with-openexr
+      --with-webp=yes
+      --with-heic=yes
+      --with-raw=yes
+      --with-gslib
+      --with-gs-font-dir=#{HOMEBREW_PREFIX}/share/ghostscript/fonts
+      --with-lqr
+      --without-djvu
+      --without-fftw
+      --with-pango=yes
+      --without-wmf
+      --enable-openmp
     ]
     if OS.mac?
       args += [
