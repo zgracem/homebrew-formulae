@@ -19,7 +19,7 @@ brew install zgracem/formulae/zgm-calendar-data
 
 ### `imagemagick`
 
-ImageMagick with `mozjpeg` included at build time.
+ImageMagick with `mozjpeg` and `pango` included at build time.
 
 ```sh
 brew install zgracem/formulae/imagemagick
