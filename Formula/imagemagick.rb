@@ -7,10 +7,10 @@ class Imagemagick < Formula
   license "ImageMagick"
   head "https://github.com/ImageMagick/ImageMagick.git", branch: "main"
 
+  # From https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/i/imagemagick.rb
   depends_on "pkgconf" => :build
   depends_on "fontconfig"
   depends_on "freetype"
-  depends_on "ghostscript"
   depends_on "jpeg-turbo"
   depends_on "jpeg-xl"
   depends_on "libheif"
@@ -20,12 +20,14 @@ class Imagemagick < Formula
   depends_on "libtiff"
   depends_on "libtool"
   depends_on "little-cms2"
-  depends_on "mozjpeg"
   depends_on "openexr"
   depends_on "openjpeg"
-  depends_on "pango"
   depends_on "webp"
   depends_on "xz"
+  # Custom additions
+  depends_on "ghostscript"
+  depends_on "mozjpeg"
+  depends_on "pango"
 
   uses_from_macos "bzip2"
   uses_from_macos "libxml2"
@@ -51,30 +53,32 @@ class Imagemagick < Formula
     # versioned stuff in main tree is pointless for us
     inreplace "configure", "${PACKAGE_NAME}-${PACKAGE_BASE_VERSION}", "${PACKAGE_NAME}"
 
-    args = %w[
-      --disable-osx-universal-binary
-      --prefix=#{prefix}
-      --disable-dependency-tracking
-      --disable-silent-rules
-      --disable-opencl
-      --enable-shared
-      --enable-static
-      --with-freetype=yes
-      --with-gvc=no
-      --with-modules
-      --with-openjp2
-      --with-openexr
-      --with-webp=yes
-      --with-heic=yes
-      --with-raw=yes
-      --with-gslib
-      --with-gs-font-dir=#{HOMEBREW_PREFIX}/share/ghostscript/fonts
-      --with-lqr
-      --without-djvu
-      --without-fftw
-      --with-pango=yes
-      --without-wmf
-      --enable-openmp
+    args = [
+      # From homebrew-core
+      "--enable-osx-universal-binary=no",
+      "--disable-silent-rules",
+      "--disable-opencl",
+      "--enable-shared",
+      "--enable-static",
+      "--with-freetype=yes",
+      "--with-gvc=no",
+      "--with-modules",
+      "--with-openjp2",
+      "--with-openexr",
+      "--with-webp=yes",
+      "--with-heic=yes",
+      "--with-raw=yes",
+      "--with-gslib",
+      "--with-gs-font-dir=#{HOMEBREW_PREFIX}/share/ghostscript/fonts",
+      "--with-lqr",
+      "--without-djvu",
+      "--without-fftw",
+      "--with-pango",
+      "--without-wmf",
+      "--enable-openmp",
+      # Custom additions
+      "--prefix=#{prefix}",
+      "--disable-dependency-tracking",
     ]
     if OS.mac?
       args += [
@@ -82,8 +86,9 @@ class Imagemagick < Formula
         # Work around "checking for clang option to support OpenMP... unsupported"
         "ac_cv_prog_c_openmp=-Xpreprocessor -fopenmp",
         "ac_cv_prog_cxx_openmp=-Xpreprocessor -fopenmp",
+        # Add flags from mozjpeg caveats
+        "LDFLAGS=-lomp -lz -L#{Formula['mozjpeg'].opt_lib}",
         "CPPFLAGS=-I#{Formula['mozjpeg'].opt_include}",
-        "LDFLAGS=-lomp -lz -L#{Formula['mozjpeg'].opt_lib}"
       ]
     end
 
@@ -96,13 +101,13 @@ class Imagemagick < Formula
 
     # Check support for recommended features and delegates.
     features = shell_output("#{bin}/magick -version")
-    %w[Modules freetype heic jpeg png raw tiff].each do |feature|
+    %w[Modules freetype heic jpeg pangocairo png raw tiff].each do |feature|
       assert_match feature, features
     end
 
     # Check support for a few specific image formats, mostly to ensure LibRaw linked correctly.
     formats = shell_output("#{bin}/magick -list format")
-    ["AVIF  HEIC      rw+", "ARW  DNG       r--", "DNG  DNG       r--"].each do |format|
+    ["AVIF  HEIC      rw+", "ARW  DNG       r--", "DNG  DNG       r--", "PANGO* PANGO     r--"].each do |format|
       assert_match format, formats
     end
     assert_match "Helvetica", shell_output("#{bin}/magick -list font")
