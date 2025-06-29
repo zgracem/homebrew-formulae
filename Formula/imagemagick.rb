@@ -26,6 +26,7 @@ class Imagemagick < Formula
   depends_on "xz"
   # Custom additions
   depends_on "ghostscript"
+  depends_on "libmagic" # for `montage` command
   depends_on "mozjpeg"
   depends_on "pango"
 
