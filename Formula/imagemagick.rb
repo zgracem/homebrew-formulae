@@ -1,11 +1,16 @@
 class Imagemagick < Formula
   desc "Tools and libraries to manipulate images in many formats"
   homepage "https://imagemagick.org/index.php"
-  url "https://imagemagick.org/archive/releases/ImageMagick-7.1.1-47.tar.xz"
-  version "7.1.1-47-custom" # to distinguish from homebrew-core's imagemagick
-  sha256 "2396cd3c4237cfbc09a89d31d1cee157ee11fbc8ec1e540530e10175cb707160"
+  url "https://imagemagick.org/archive/releases/ImageMagick-7.1.2-1.tar.xz"
+  version "7.1.2-1-custom" # to distinguish from homebrew-core's imagemagick
+  sha256 "ead4b5d33efab77ec84335a0be9c34a0fa7e3693456bf05e76d3fa492ad6ebbb"
   license "ImageMagick"
   head "https://github.com/ImageMagick/ImageMagick.git", branch: "main"
+
+  livecheck do
+    url "https://imagemagick.org/archive/"
+    regex(/href=.*?ImageMagick[._-]v?(\d+(?:\.\d+)+-\d+)\.t/i)
+  end
 
   # From https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/i/imagemagick.rb
   depends_on "pkgconf" => :build
