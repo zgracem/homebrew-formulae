@@ -1,6 +1,6 @@
 # homebrew-formulae
 
-Custom Homebrew formulae for my own use.
+Custom Homebrew files for my own use.
 
 ## Formulae
 
@@ -19,7 +19,8 @@ brew install zgracem/formulae/zgm-calendar-data
 
 ### `imagemagick`
 
-ImageMagick with `mozjpeg` and `pango` included at build time.
+ImageMagick with additional features (`ghostscript`, `libmagic`, `mozjpeg` and
+`pango`) included at build time.
 
 ```sh
 brew install zgracem/formulae/imagemagick
