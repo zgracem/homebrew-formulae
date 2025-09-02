@@ -1,8 +1,8 @@
 cask "acorn@preview" do
-  version "8.2b1-17132"
+  version "8.2b1-17168"
   sha256 :no_check
 
-  url "https://flyingmeat.com/download/latest/Acorn8Preview.zip"
+  url "https://flyingmeat.com/download/latest/Acorn#{version.major}Preview.zip"
   name "Acorn"
   desc "Image editor focused on simplicity"
   homepage "https://flyingmeat.com/acorn/"
@@ -10,13 +10,14 @@ cask "acorn@preview" do
   livecheck do
     url "https://flyingmeat.com/download/latest/"
     strategy :page_match do |page|
-      page.scan(%r{(?<=Acorn 8 Preview\.zip</a> \()(\d+(?:\.\d+)*(?:[ab]\d*)? \(\d+\))}i)
+      page.scan(%r{(?<=Acorn #{version.major} Preview\.zip</a> \()(\d+(?:\.\d+)*(?:[ab]\d*)? \(\d+\))}i)
           .map { |match| match&.first }
     end
   end
 
   auto_updates true
   conflicts_with cask: "acorn"
+  depends_on macos: ">= :sonoma"
 
   app "Acorn.app"
 
