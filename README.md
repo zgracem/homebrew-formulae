@@ -32,6 +32,10 @@ brew install zgracem/formulae/imagemagick
 
 Downloads (and livechecks) development builds of [Acorn].
 
+```sh
+brew install --cask zgracem/formulae/acorn@preview
+```
+
 [Acorn]: https://flyingmeat.com/download/latest
 
 ### `lockscreen`
@@ -39,7 +43,7 @@ Downloads (and livechecks) development builds of [Acorn].
 Builds [a simple .app][lock] to quickly lock the screen in macOS.
 
 ```sh
-brew install zgracem/formulae/lockscreen
+brew install --cask zgracem/formulae/lockscreen
 ```
 
 [lock]: https://github.com/gaomd/lock-screen-app
