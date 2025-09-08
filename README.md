@@ -26,15 +26,6 @@ ImageMagick with additional features (`ghostscript`, `libmagic`, `mozjpeg` and
 brew install zgracem/formulae/imagemagick
 ```
 
-### `unrar`
-
-`unrar` was [removed](https://github.com/Homebrew/homebrew-core/pull/66609) from
-Homebrew in December 2020 because it's not open source software.
-
-```sh
-brew install zgracem/formulae/unrar
-```
-
 ## Casks
 
 ### `acorn@preview`

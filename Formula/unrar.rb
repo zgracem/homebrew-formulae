@@ -1,14 +1,15 @@
 class Unrar < Formula
   desc "Extract, view, and test RAR archives"
   homepage "https://www.rarlab.com/"
-  url "https://www.rarlab.com/rar/unrarsrc-6.1.7.tar.gz"
-  sha256 "de75b6136958173fdfc530d38a0145b72342cf0d3842bf7bb120d336602d88ed"
-  revision 1
+  url "https://www.rarlab.com/rar/unrarsrc-7.1.10.tar.gz"
+  sha256 "72a9ccca146174f41876e8b21ab27e973f039c6d10b13aabcb320e7055b9bb98"
 
   livecheck do
     url "https://www.rarlab.com/rar_add.htm"
     regex(/href=.*?unrarsrc[._-]v?(\d+(?:\.\d+)+)\.tar\.gz.*release/i)
   end
+
+  disable! date: "2025-09-08", because: :does_not_build
 
   def install
     # upstream doesn't particularly care about their unix targets,
