@@ -6,7 +6,6 @@ cask "lockscreen" do
   name "Lock Screen"
   desc "The missing Lock Screen app for Spotlight of macOS"
   homepage "https://github.com/gaomd/lock-screen-app"
-  revision 1
 
   livecheck do
     url :url
