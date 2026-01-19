@@ -12,6 +12,9 @@ class Imagemagick < Formula
     regex(/href=.*?ImageMagick[._-]v?(\d+(?:\.\d+)+-\d+)\.t/i)
   end
 
+  # https://github.com/Homebrew/homebrew-core/pull/263377
+  deprecate! date: "2026-01-19", because: "the formula `imagemagick-full` exists"
+
   # From https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/i/imagemagick.rb
   depends_on "pkgconf" => :build
   depends_on "fontconfig"
