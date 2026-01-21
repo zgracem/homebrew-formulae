@@ -1,9 +1,9 @@
 class Imagemagick < Formula
   desc "Tools and libraries to manipulate images in many formats"
   homepage "https://imagemagick.org/index.php"
-  version "7.1.2-3"
-  url "https://imagemagick.org/archive/releases/ImageMagick-7.1.2-3.tar.xz"
-  sha256 "2943d26f9ac4875aacf16c8f717f4d32ac985fe6a0c0a8e48c24c5cbb3161050"
+  version "7.1.2-13"
+  url "https://imagemagick.org/archive/releases/ImageMagick-7.1.2-13.tar.xz"
+  sha256 "968e022c8c7ee620680bac658628ef0f582be7b8aa71b386a9a9d068ec17dbd2"
   license "ImageMagick"
   head "https://github.com/ImageMagick/ImageMagick.git", branch: "main"
 
@@ -12,28 +12,31 @@ class Imagemagick < Formula
     regex(/href=.*?ImageMagick[._-]v?(\d+(?:\.\d+)+-\d+)\.t/i)
   end
 
-  # https://github.com/Homebrew/homebrew-core/pull/263377
-  deprecate! date: "2026-01-19", because: "the formula `imagemagick-full` exists"
-
-  # From https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/i/imagemagick.rb
+  # From https://github.com/Homebrew/homebrew-core/blob/HEAD/Formula/i/imagemagick-full.rb
   depends_on "pkgconf" => :build
+  depends_on "cairo"
   depends_on "fontconfig"
   depends_on "freetype"
+  depends_on "ghostscript"
+  depends_on "glib"
   depends_on "jpeg-turbo"
   depends_on "jpeg-xl"
   depends_on "libheif"
   depends_on "liblqr"
   depends_on "libpng"
   depends_on "libraw"
+  depends_on "librsvg"
   depends_on "libtiff"
   depends_on "libtool"
+  depends_on "libultrahdr"
+  depends_on "libzip"
   depends_on "little-cms2"
   depends_on "openexr"
   depends_on "openjpeg"
   depends_on "webp"
   depends_on "xz"
+
   # Custom additions
-  depends_on "ghostscript"
   depends_on "libmagic" # for `montage` command
   depends_on "mozjpeg"
   depends_on "pango"
@@ -43,8 +46,8 @@ class Imagemagick < Formula
   uses_from_macos "zlib"
 
   on_macos do
+    depends_on "gdk-pixbuf"
     depends_on "gettext"
-    depends_on "glib"
     depends_on "imath"
     depends_on "libomp"
   end
@@ -70,19 +73,22 @@ class Imagemagick < Formula
       "--enable-shared",
       "--enable-static",
       "--with-freetype=yes",
+      "--with-rsvg=yes",
       "--with-gvc=no",
       "--with-modules",
       "--with-openjp2",
       "--with-openexr",
       "--with-webp=yes",
       "--with-heic=yes",
+      "--with-pango=yes",
       "--with-raw=yes",
+      "--with-uhdr=yes",
+      "--with-zip=yes",
       "--with-gslib",
       "--with-gs-font-dir=#{HOMEBREW_PREFIX}/share/ghostscript/fonts",
       "--with-lqr",
       "--without-djvu",
       "--without-fftw",
-      "--with-pango",
       "--without-wmf",
       "--enable-openmp",
       # Custom additions

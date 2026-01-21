@@ -17,6 +17,15 @@ brew install zgracem/formulae/zgm-calendar-data
 [cal]: https://packages.debian.org/stable/calendar
 [custom data files]: https://github.com/zgracem/calendar-data
 
+### `imagemagick`
+
+ImageMagick with additional features (`libmagic`, `mozjpeg` and `pango`)
+included at build time.
+
+```sh
+brew install zgracem/formulae/imagemagick
+```
+
 ## Casks
 
 ### `acorn@preview`
