@@ -17,6 +17,19 @@ brew install zgracem/formulae/zgm-calendar-data
 [cal]: https://packages.debian.org/stable/calendar
 [custom data files]: https://github.com/zgracem/calendar-data
 
+### `groff-pdfmark`
+
+[`groff⁠-⁠pdfmark`][pdf] provides a suite of macro packages designed to
+facilitate the creation of PDF files, using [GNU `roff`][groff] as the primary
+typesetting engine.
+
+[pdf]: https://savannah.nongnu.org/projects/groff-pdfmark
+[groff]: https://www.gnu.org/software/groff/
+
+```sh
+brew install groff⁠-⁠pdfmark
+```
+
 ### `imagemagick`
 
 ImageMagick with additional features (`libmagic`, `mozjpeg` and `pango`)
