@@ -19,15 +19,15 @@ brew install zgracem/formulae/zgm-calendar-data
 
 ### `groff-pdfmark`
 
-[`groff⁠-⁠pdfmark`][pdf] provides a suite of macro packages designed to
-facilitate the creation of PDF files, using [GNU `roff`][groff] as the primary
-typesetting engine.
+[`pdfmark`] is a suite of macros designed to facilitate the creation of PDF
+files using [`groff`] as the primary typesetting engine, maintained and
+distributed separately from `groff` since February 2026.
 
-[pdf]: https://savannah.nongnu.org/projects/groff-pdfmark
-[groff]: https://www.gnu.org/software/groff/
+[`groff`]: https://www.gnu.org/software/groff/
+[`pdfmark`]: https://savannah.nongnu.org/projects/groff-pdfmark
 
 ```sh
-brew install groff⁠-⁠pdfmark
+brew install zgracem/formulae/groff-pdfmark
 ```
 
 ### `imagemagick`
